@@ -37,7 +37,8 @@ namespace DAL.DALs
 
         public Persona GetPersona(long id)
         {
-            return personas.FirstOrDefault(p => p.Id == id);
+            Persona? p = personas.FirstOrDefault(p => p.Id == id);
+            return p is null ? throw new Exception("No existe una persona con esa ID") : p;
         }
 
         public List<Persona> GetPersonas()
@@ -47,7 +48,8 @@ namespace DAL.DALs
 
         public void UpdatePersona(Persona persona)
         {
-            Persona p = personas.FirstOrDefault(p => p.Id == persona.Id);
+            Persona? p = personas.FirstOrDefault(p => p.Id == persona.Id);
+            if (p is null) throw new Exception("No existe una persona con esa ID");
             p.Nombre = persona.Nombre;
             p.Documento = persona.Documento;
         }
