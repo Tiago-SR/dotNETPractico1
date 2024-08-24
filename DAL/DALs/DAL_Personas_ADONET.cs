@@ -49,11 +49,6 @@ namespace DataAccessLayer.DALs {
             }
             return p;
         }
-        public void DeletePersona(string documento) {
-            ArgumentNullException.ThrowIfNull(documento);
-            long documentoLong = (long)Convert.ToDouble(documento);
-            DeletePersona(documentoLong);
-        }
         public void DeletePersona(long documento) {
             try {
                 Persona p = new();
@@ -73,7 +68,7 @@ namespace DataAccessLayer.DALs {
             }
         }
 
-        public void AddPersona(Persona persona) {
+        public Persona AddPersona(Persona persona) {
             try {
                 using var connection = new SqlConnection(connectionString);
                 string sql = "INSERT INTO Personas (Nombre, Documento) VALUES (@Nombre, @Doc)";
@@ -82,12 +77,13 @@ namespace DataAccessLayer.DALs {
                 command.Parameters.AddWithValue("@Doc", persona.Documento);
                 connection.Open();
                 command.ExecuteNonQuery();
+                return persona;
             } catch (Exception e) {
                 throw new Exception($"Ha ocurrido un error. Msg: {e.Message}");
             }
         }
 
-        public void UpdatePersona(Persona persona) {
+        public Persona UpdatePersona(Persona persona) {
             throw new NotImplementedException();
         }
     }

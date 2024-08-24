@@ -23,11 +23,12 @@ namespace DAL.DALs
             new Persona { Id = 7, Nombre = "Jose", Documento = "1234567" },
         };
 
-        public void AddPersona(Persona persona)
+        public Persona AddPersona(Persona persona)
         {
             lastId++;
             persona.Id = lastId;
             personas.Add(persona);
+            return persona;
         }
 
         public void DeletePersona(long id)
@@ -46,12 +47,13 @@ namespace DAL.DALs
             return personas;
         }
 
-        public void UpdatePersona(Persona persona)
+        public Persona UpdatePersona(Persona persona)
         {
             Persona? p = personas.FirstOrDefault(p => p.Id == persona.Id);
             if (p is null) throw new Exception("No existe una persona con esa ID");
             p.Nombre = persona.Nombre;
             p.Documento = persona.Documento;
+            return p;
         }
     }
 }
