@@ -8,11 +8,6 @@ IDAL_Vehiculos dalVehiculo = new DAL_Vehiculos_EF();
 StartUp startUp = new();
 startUp.UpdateDatabase();
 
-
-
-
-
-
 Console.WriteLine("Bienvenido a mi primera app .NET!!!");
 
 static void enterToContinue() {
