@@ -119,7 +119,6 @@ static void callMenu(IDAL_Personas dal) {
 
 // callMenu(dal);
 
-
 //printPersonas(dal);
 
 //try {
