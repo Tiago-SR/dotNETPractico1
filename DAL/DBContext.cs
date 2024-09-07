@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DAL {
     public class DBContext : DbContext {
-        private string _connectionString = "Server=localhost,1400;Database=practico;User Id=sa; Password=Abc*123!;Encrypt=False;";
+        private string _connectionString = "Server=sqlserver,1433;Database=practico;User Id=sa; Password=Abc*123!;Encrypt=False;";
 
         public DBContext() { }
 
@@ -22,5 +22,9 @@ namespace DAL {
 
         public DbSet<PersonaEF> Personas { get; set; }
         public DbSet<VehiculoEF> Vehiculos { get; set; }
+        public static void UpdateDatabase() {
+            using var context = new DBContext();
+            context.Database.Migrate();
+        }
     }
 }
