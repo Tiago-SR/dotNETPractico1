@@ -1,6 +1,8 @@
-using DAL;
+using BL.BLs;
+using BL.IBLs;
 using DAL.DALs;
 using DAL.IDALs;
+using Microsoft.EntityFrameworkCore;
 
 try
 {
@@ -12,6 +14,9 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+    
+    builder.Services.AddDbContext<DAL.DBContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
     #region Inyeccion de dependencias.
     // DALs
@@ -19,7 +24,8 @@ try
     builder.Services.AddTransient<IDAL_Vehiculos, DAL_Vehiculos_EF>();
 
     // BLs
-    // builder.Services.AddSingleton<>();
+    builder.Services.AddSingleton<IBL_Personas, BL_Personas>();
+    builder.Services.AddSingleton<IBL_Vehiculo, BL_Vehiculo>();
 
     #endregion
 
@@ -38,7 +44,7 @@ try
 
     app.MapControllers();
 
-    DBContext.UpdateDatabase();
+    UpdateDatabase();
 
     app.Run();
 
@@ -46,4 +52,10 @@ try
 catch (Exception e)
 {
     Console.WriteLine(e.ToString());
+}
+
+static void UpdateDatabase() {
+    using var context = new DAL.DBContext();
+    //context?.Database.Migrate();
+    context.Database.Migrate();
 }

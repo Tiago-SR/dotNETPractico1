@@ -86,5 +86,9 @@ namespace DataAccessLayer.DALs {
         public Persona UpdatePersona(Persona persona) {
             throw new NotImplementedException();
         }
+
+        public List<Vehiculo> GetVehiculos(long id) {
+            throw new NotImplementedException();
+        }
     }
 }

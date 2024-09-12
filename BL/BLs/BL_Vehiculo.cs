@@ -26,10 +26,6 @@ namespace BL.BLs {
             return _vehiculos.GetVehiculos();
         }
 
-        public List<Vehiculo> GetVehiculosFromOwner(long id) {
-            return _vehiculos.GetVehiculosFromOwner(id);
-        }
-
         public Vehiculo UpdateVehiculo(Vehiculo v) {
             return _vehiculos.UpdateVehiculo(v);
         }

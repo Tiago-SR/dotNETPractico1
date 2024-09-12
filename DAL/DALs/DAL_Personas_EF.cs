@@ -34,7 +34,7 @@ namespace DAL.DALs {
         public Persona GetPersona(long id) {
             using var context = new DBContext();
             PersonaEF? p = context.Personas.FirstOrDefault(p => p.Id == id);
-            return p is null ? throw new Exception($"No existe Persona con Id: {id}") : p.GetEntity();
+            return p is null ? null : p.GetEntity();
         }
 
         public List<Persona> GetPersonas() {
@@ -56,5 +56,9 @@ namespace DAL.DALs {
             return pe.GetEntity();
         }
 
+        public List<Vehiculo> GetVehiculos(long id) {
+            using var context = new DBContext();
+            return [.. context.Vehiculos.Where(v => v.OwnerId == id).Select(v => v.GetEntity())];
+        }
     }
 }

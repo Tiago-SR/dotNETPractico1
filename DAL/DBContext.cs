@@ -22,9 +22,5 @@ namespace DAL {
 
         public DbSet<PersonaEF> Personas { get; set; }
         public DbSet<VehiculoEF> Vehiculos { get; set; }
-        public static void UpdateDatabase() {
-            using var context = new DBContext();
-            context.Database.Migrate();
-        }
     }
 }

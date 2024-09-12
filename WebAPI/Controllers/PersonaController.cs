@@ -16,16 +16,24 @@ namespace WebAPI.Controllers
         }
         // GET: api/<PersonaController>
         [HttpGet]
-        public IEnumerable<Persona> Get()
-        {
+        public IEnumerable<Persona> Get() {
             return _persona.GetPersonas();
         }
 
         // GET api/<PersonaController>/5
         [HttpGet("{id}")]
-        public Persona Get(int id)
-        {
-            return _persona.GetPersona(id);
+        public IActionResult Get(int id) {
+            Persona p = _persona.GetPersona(id);
+            if (p is null) {
+                return NotFound("No existe persona con esa ID");
+            }
+            return Ok(p);
+        }
+
+        // GET api/<PersonaController>/vehiculos
+        [HttpGet("{id}/vehiculos")]
+        public IEnumerable<Vehiculo> GetVehiculos(int id) {
+            return _persona.GetVehiculos(id);
         }
 
         // POST api/<PersonaController>

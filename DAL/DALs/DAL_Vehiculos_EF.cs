@@ -1,5 +1,4 @@
-﻿
-using DAL.Models;
+﻿using DAL.Models;
 using Shared;
 
 namespace DAL.DALs {
@@ -8,14 +7,10 @@ namespace DAL.DALs {
             using var context = new DBContext();
             return [.. context.Vehiculos.Select(v => v.GetEntity())];
         }
-        public List<Vehiculo> GetVehiculosFromOwner(long id) {
-            using var context = new DBContext();
-            return [.. context.Vehiculos.Where(v => v.OwnerId == id).Select(v => v.GetEntity())];
-        }
         public Vehiculo GetVehiculo(long id) {
             using var context = new DBContext();
             VehiculoEF? v = context.Vehiculos.FirstOrDefault(v => v.Id == id);
-            return v is null ? throw new Exception($"No existe Vehiculo con Id: {id}") : v.GetEntity();
+            return v is null ? null: v.GetEntity();
         }
         public Vehiculo AddVehiculo(Vehiculo v) {
             if (v is null) throw new Exception("El vehiculo no puede ser nulo.");

@@ -28,5 +28,10 @@ namespace BL.BLs {
         public Persona UpdatePersona(Persona persona) {
             return _personas.UpdatePersona(persona);
         }
+
+        public List<Vehiculo> GetVehiculos(long id) {
+            return _personas.GetVehiculos(id);
+        }
+            
     }
 }

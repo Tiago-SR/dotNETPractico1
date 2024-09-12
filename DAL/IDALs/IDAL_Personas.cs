@@ -9,5 +9,6 @@ namespace DAL.IDALs
         Persona AddPersona(Persona persona);
         void DeletePersona(long id);
         Persona UpdatePersona(Persona persona);
+        List<Vehiculo> GetVehiculos(long id);
     }
 }

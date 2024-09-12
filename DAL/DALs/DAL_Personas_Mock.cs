@@ -47,6 +47,10 @@ namespace DAL.DALs
             return personas;
         }
 
+        public List<Vehiculo> GetVehiculos(long id) {
+            throw new NotImplementedException();
+        }
+
         public Persona UpdatePersona(Persona persona)
         {
             Persona? p = personas.FirstOrDefault(p => p.Id == persona.Id);
